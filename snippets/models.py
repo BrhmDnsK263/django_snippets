@@ -43,6 +43,9 @@ class Snippet(models.Model):
         result = highlight(self.snippet, lexer, formatter)
         return result
 
+    class Meta:
+        ordering = ("-created",)
+
 def send_mail_snippet(sender, instance, *args, **kwargs):
     if instance.user.email:
         print("\n\n\nPOR MANDAR\n\n\n")
