@@ -22,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'gz(%zk5m1&tiv(_&$)^69(a!bos)4iuzp7y4d8eyi&td2eqj+u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "crispy_forms",
 ]
 
 MIDDLEWARE = [
@@ -116,5 +117,33 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+#login
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
+
+#crispy
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+#celery
+CELERY_BROKER_URL = os.environ['REDIS_URL']
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+#email
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = "465"
+EMAIL_HOST_USER = os.environ['email']
+EMAIL_HOST_PASSWORD = os.environ['email_pass']
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
+#heroku
+import django_heroku
+django_heroku.settings(locals())
