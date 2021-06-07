@@ -17,7 +17,7 @@ class IndexView(ListView):
         if self.request.user.is_authenticated:
             user_private = Snippet.objects.filter(public=False,user=self.request.user)
             qs = qs.union(user_private)
-        return qs
+        return qs.order_by("-created")
 
 
 class SnippetDetailView(UserPassesTestMixin,DetailView):
@@ -79,7 +79,7 @@ class SnippetLanguageListView(ListView):
         if self.request.user.is_authenticated:
             user_private = Snippet.objects.filter(public=False,user=self.request.user, language=self.lang)
             qs = qs.union(user_private)
-        return qs
+        return qs.order_by("-created")
 
 
 class SnippetUserListView(ListView):
@@ -98,4 +98,4 @@ class SnippetUserListView(ListView):
         if self.request.user.is_authenticated and self.request.user == self.creator:
             user_private = Snippet.objects.filter(public=False,user=self.request.user)
             qs = qs.union(user_private)
-        return qs
+        return qs.order_by("-created")
