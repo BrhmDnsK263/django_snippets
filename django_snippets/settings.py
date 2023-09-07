@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "crispy_forms",
+    "crispy_bootstrap4",
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_snippets.wsgi.application'
 
+import logging
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(levelname)s %(asctime)s %(module)s %(message)s',
+)
+logging.getLogger('django.security.DisallowedHost').setLevel(logging.ERROR)
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
