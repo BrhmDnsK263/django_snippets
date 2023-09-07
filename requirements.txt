@@ -43,8 +43,12 @@ django-crispy-forms==2.0
     #   crispy-bootstrap4
 django-heroku==0.3.1
     # via -r requirements.in.txt
+gunicorn==21.2.0
+    # via -r requirements.in.txt
 kombu==5.3.2
     # via celery
+packaging==23.1
+    # via gunicorn
 prompt-toolkit==3.0.39
     # via click-repl
 psycopg2==2.9.7
